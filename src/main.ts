@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 type GameState = {
   turnNumber: number
   activeSeat: "P1" | "P2"
@@ -27,11 +26,3 @@ function render() {
 }
 
 render()
-=======
-const app = document.getElementById("app")!
-
-app.innerHTML = `
-  <h1>Hex Card RPG</h1>
-  <button id="turn">End Turn</button>
-`
->>>>>>> 93aaeace7f5b70f14a9004bcdb48cd19f1ba61db

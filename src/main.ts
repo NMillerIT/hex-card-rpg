@@ -1,24 +1,28 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+type GameState = {
+  turnNumber: number
+  activeSeat: "P1" | "P2"
+}
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const state: GameState = {
+  turnNumber: 1,
+  activeSeat: "P1",
+}
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const app = document.getElementById("app")!
+
+function render() {
+  app.innerHTML = `
+    <h1>Hex Card RPG</h1>
+    <p>Turn: <b>${state.turnNumber}</b></p>
+    <p>Active: <b>${state.activeSeat}</b></p>
+    <button id="turn">End Turn</button>
+  `
+
+  document.getElementById("turn")!.addEventListener("click", () => {
+    state.activeSeat = state.activeSeat === "P1" ? "P2" : "P1"
+    state.turnNumber++
+    render()
+  })
+}
+
+render()
